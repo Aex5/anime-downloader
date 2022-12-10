@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
     <div>
-      <paragraph className="text-slate-200 text-left">
+      <article className="text-slate-200 text-left">
         <h1 className="text-4xl font-bold tracking-wider mb-10">
           Ended Anime. <br />
           <span className="text-[#34b27b]">Fast & Free.</span>
@@ -35,7 +35,7 @@ export default function Hero() {
             </a>
           </button>
         </div>
-      </paragraph>
+      </article>
     </div>
   );
 }

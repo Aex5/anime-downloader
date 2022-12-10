@@ -2,20 +2,28 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Hero from "../components/Hero";
+import Recomend from "../components/Recomend";
 
+// batch anime
 export async function getServerSideProps() {
   const res = await fetch("https://kusonime-scrapper.glitch.me/api/page/5");
+  const resRecomend = await fetch(
+    "https://kusonime-scrapper.glitch.me/api/rekomendasi"
+  );
   const data = await res.json();
+  const dataRecomend = await resRecomend.json();
 
   return {
     props: {
       data,
+      dataRecomend,
     },
   };
 }
 
-export default function Home({ data }) {
+export default function Home({ data, dataRecomend }) {
   const [anime, setAnime] = useState([data]);
+  const [recomend, setRecomend] = useState([dataRecomend]);
   const [keyword, setKeyword] = useState("");
 
   async function search() {
@@ -45,7 +53,7 @@ export default function Home({ data }) {
 
         <Hero />
 
-        <main className="grid grid-cols-4 gap-5">
+        <main className="grid grid-cols-4 gap-5 pt-20 ">
           {data.map((a, index) => {
             return (
               <Link href={`/detailAnime/${a.link.endpoint}`} key={index}>
@@ -73,6 +81,12 @@ export default function Home({ data }) {
         <button className="mt-10 px-6 py-1 bg-[#34b27b] rounded-md">
           Load more
         </button>
+
+        {dataRecomend.map((r, index) => {
+          return (
+            <Recomend key={index} title={r.title} thumbnail={r.thumbnail} />
+          );
+        })}
       </div>
     </div>
   );
