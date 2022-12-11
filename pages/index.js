@@ -4,6 +4,14 @@ import Link from "next/link";
 import Hero from "../components/Hero";
 import Recomend from "../components/Recomend";
 
+// coursel
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { motion } from "framer-motion";
+
 // batch anime
 export async function getServerSideProps() {
   const res = await fetch("https://kusonime-scrapper.glitch.me/api/page/5");
@@ -45,49 +53,81 @@ export default function Home({ data, dataRecomend }) {
 
   return (
     <div className="w-full text-center text-slate-200">
-      <div className="max-w-[800px] mx-auto">
-        <form onSubmit={handleSubmit} className="mb-5">
-          <input type="text" onChange={handleChange} value={keyword} />
-          <button type="submit">search</button>
-        </form>
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <main className="max-w-[800px] mx-auto">
+          <form onSubmit={handleSubmit} className="mb-5">
+            <input type="text" onChange={handleChange} value={keyword} />
+            <button type="submit">search</button>
+          </form>
 
-        <Hero />
+          <Hero />
 
-        <main className="grid grid-cols-4 gap-5 pt-20 ">
-          {data.map((a, index) => {
-            return (
-              <Link href={`/detailAnime/${a.link.endpoint}`} key={index}>
-                <a>
-                  <div className="flex flex-col bg-[#282828] pb-5 rounded-lg">
-                    <Image
-                      src={a.link.thumbnail}
-                      alt={a.title}
-                      width={300}
-                      height={150}
-                      className="rounded-t-lg object-cover"
-                    />
-                    <div className="mt-2">
-                      <h1 className="text-md font-semibold">
-                        {limit(a.title)}
-                      </h1>
-                      <p className="text-slate-400 text-xs">{a.release}</p>
+          {/* recomend anime */}
+          <section>
+            <h1 className="text-2xl text-left font-semibold mb-5">
+              Trending Now
+            </h1>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={30}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Pagination]}
+              className="mySwiper"
+            >
+              {dataRecomend.map((r, index) => {
+                return (
+                  <>
+                    <SwiperSlide>
+                      <Recomend
+                        key={index}
+                        title={r.title}
+                        thumbnail={r.link.thumbnail}
+                      />
+                    </SwiperSlide>
+                  </>
+                );
+              })}
+            </Swiper>
+          </section>
+
+          {/* batch anime */}
+          <section className="grid grid-cols-4 gap-5 pt-20 ">
+            {data.map((a, index) => {
+              return (
+                <Link href={`/detailAnime/${a.link.endpoint}`} key={index}>
+                  <a>
+                    <div className="flex flex-col bg-[#282828] pb-5 rounded-lg">
+                      <Image
+                        src={a.link.thumbnail}
+                        alt={a.title}
+                        width={300}
+                        height={150}
+                        className="rounded-t-lg object-cover"
+                      />
+                      <div className="mt-2">
+                        <h1 className="text-md text-slate-300 font-semibold">
+                          {limit(a.title)}
+                        </h1>
+                        <p className="text-[#34b27b] text-xs">{a.release}</p>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </Link>
-            );
-          })}
+                  </a>
+                </Link>
+              );
+            })}
+          </section>
+          <button className="mt-10 px-6 py-1 bg-[#34b27b] rounded-md">
+            Load more
+          </button>
         </main>
-        <button className="mt-10 px-6 py-1 bg-[#34b27b] rounded-md">
-          Load more
-        </button>
-
-        {dataRecomend.map((r, index) => {
-          return (
-            <Recomend key={index} title={r.title} thumbnail={r.thumbnail} />
-          );
-        })}
-      </div>
+      </motion.div>
     </div>
   );
 }

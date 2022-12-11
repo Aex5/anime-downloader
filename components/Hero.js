@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <div>
+    <div className="mb-20">
       <article className="text-slate-200 text-left">
         <h1 className="text-4xl font-bold tracking-wider mb-10">
           Ended Anime. <br />
@@ -8,7 +8,7 @@ export default function Hero() {
         </h1>
         <p className="max-w-[30rem] text-base text-[#b4b4b4] mb-10">
           Lawak Anime is a alternative anime downloader. if you think ads is
-          awfull, Lawak Anime is best choise to you. You can download batch
+          awfull, Lawak Anime is best choice to you. You can download batch
           anime below and enjoy it without ads 🎉
         </p>
 
