@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DetailAnime from "../../components/DetailAnime";
 
 export async function getServerSideProps(ctx) {
   const name = ctx.query;
@@ -20,13 +21,21 @@ export default function detailAnime({ data }) {
   const [anime, setAnime] = useState([data]);
 
   return (
-    <div>
+    <div className="w-full text-slate-300">
       <div>
         {anime.map((a, index) => {
           return (
-            <div key={index}>
-              <p>{a.title}</p>
-            </div>
+            <DetailAnime
+              key={index}
+              title={a.title}
+              thumbnail={a.thumbnail}
+              japan={a.japanese}
+              genre={a.genre}
+              producer={a.producers.join(", ")}
+              status={a.status}
+              score={a.score}
+              sinopsis={a.sinopsis}
+            />
           );
         })}
       </div>

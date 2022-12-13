@@ -21,8 +21,7 @@ a {
   box-sizing: border-box;
 }
 
-.custom-shadow{
-  background: rgb(0,0,0);
-background: linear-gradient(0deg, rgba(0,0,0,0.9205882181974352) 20%, rgba(0,0,0,0.5592436803823091) 65%, rgba(91,89,89,0) 100%); }
+.custom-shadow{ background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,0.9205882181974352) 38%, rgba(0,0,0,0.5592436803823091) 82%, rgba(64,63,63,0) 100%);  }
 
   

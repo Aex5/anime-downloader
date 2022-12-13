@@ -11,10 +11,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 
 // batch anime
 export async function getServerSideProps() {
-  const res = await fetch("https://kusonime-scrapper.glitch.me/api/page/5");
+  const res = await fetch("https://kusonime-scrapper.glitch.me/api/page/1");
   const resRecomend = await fetch(
     "https://kusonime-scrapper.glitch.me/api/rekomendasi"
   );
@@ -32,38 +33,20 @@ export async function getServerSideProps() {
 export default function Home({ data, dataRecomend }) {
   const [anime, setAnime] = useState([data]);
   const [recomend, setRecomend] = useState([dataRecomend]);
-  const [keyword, setKeyword] = useState("");
-
-  async function search() {
-    window.location.href = `/search/${keyword}`;
-  }
-
-  function handleChange(e) {
-    setKeyword(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    search();
-  }
 
   function limit(string = "", limit = 30) {
     return string.substring(0, limit) + "...";
   }
 
   return (
-    <div className="w-full text-center text-slate-200">
+    <div className="w-full text-center text-slate-300">
+      <Navbar />
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <main className="max-w-[800px] mx-auto">
-          <form onSubmit={handleSubmit} className="mb-5">
-            <input type="text" onChange={handleChange} value={keyword} />
-            <button type="submit">search</button>
-          </form>
-
           <Hero />
 
           {/* recomend anime */}
@@ -98,12 +81,12 @@ export default function Home({ data, dataRecomend }) {
           </section>
 
           {/* batch anime */}
-          <section className="grid grid-cols-4 gap-5 pt-20 ">
+          <section className="grid grid-cols-3 gap-5 pt-20 ">
             {data.map((a, index) => {
               return (
                 <Link href={`/detailAnime/${a.link.endpoint}`} key={index}>
                   <a>
-                    <div className="flex flex-col bg-[#282828] pb-5 rounded-lg">
+                    <div className="h-56 flex flex-col bg-[#282828] pb-5 rounded-lg">
                       <Image
                         src={a.link.thumbnail}
                         alt={a.title}
@@ -112,7 +95,7 @@ export default function Home({ data, dataRecomend }) {
                         className="rounded-t-lg object-cover"
                       />
                       <div className="mt-2">
-                        <h1 className="text-md text-slate-300 font-semibold">
+                        <h1 className="text-md text-slate-300 font-semibold px-2">
                           {limit(a.title)}
                         </h1>
                         <p className="text-[#34b27b] text-xs">{a.release}</p>
