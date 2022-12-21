@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "../components/Hero";
 import Recomend from "../components/Recomend";
+import Navbar from "../components/Navbar";
 
 // coursel
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,11 +12,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { motion } from "framer-motion";
-import Navbar from "../components/Navbar";
 
-// batch anime
 export async function getServerSideProps() {
-  const res = await fetch("https://kusonime-scrapper.glitch.me/api/page/1");
+  const res = await fetch(`https://kusonime-scrapper.glitch.me/api/page/1`);
   const resRecomend = await fetch(
     "https://kusonime-scrapper.glitch.me/api/rekomendasi"
   );
@@ -39,14 +38,14 @@ export default function Home({ data, dataRecomend }) {
   }
 
   return (
-    <div className="w-full text-center text-slate-300">
+    <div className="w-full text-center text-slate-300 ">
       <Navbar />
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <main className="max-w-[800px] mx-auto">
+        <main className="max-w-[800px] mx-auto pt-20">
           <Hero />
 
           {/* recomend anime */}
