@@ -45,7 +45,7 @@ export default function Home({ data, dataRecomend }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <main className="max-w-[800px] mx-auto pt-20">
+        <main className="max-w-[800px] mx-auto pt-28">
           <Hero />
 
           {/* recomend anime */}
@@ -78,6 +78,7 @@ export default function Home({ data, dataRecomend }) {
               })}
             </Swiper>
           </section>
+          
 
           {/* batch anime */}
           <section className="grid grid-cols-3 gap-5 pt-20 ">
