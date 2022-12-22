@@ -43,14 +43,14 @@ export default function detailAnime({ data }) {
               score={a.score}
               sinopsis={a.sinopsis}
             />
-            {download.map((d) => {
+            {download.map((d, index) => {
               return(
-                <div>
+                <div key={index}>
                   <h1>{d.resolusi}</h1>
                   <ul className="flex flex-wrap gap-2 py-6">
-                  {d.link_download.map((l) => {
+                  {d.link_download.map((l, index) => {
                     return(
-                      <ul>
+                      <ul key={index}>
                         <li>{l.platform}</li>
                         <li>{l.link}</li>
                       </ul>
