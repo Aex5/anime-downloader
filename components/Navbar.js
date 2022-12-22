@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {MdSearch} from 'react-icons/md'
 
 export default function Navbar() {
   const [keyword, setKeyword] = useState("");
@@ -30,9 +31,10 @@ export default function Navbar() {
               type="text"
               onChange={handleChange}
               value={keyword}
-              className="bg-[#1c1c1c] border-2 border-[#2e2e2e] rounded-md"
+              placeholder="search anime"
+              className="bg-[#1c1c1c] text-sm px-2 border-2 border-[#2e2e2e] rounded-md"
             />
-            <button type="submit">search</button>
+            <button type="submit"><MdSearch/></button>
           </form>
         </div>
       </nav>

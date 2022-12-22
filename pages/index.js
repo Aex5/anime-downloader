@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "../components/Hero";
 import Recomend from "../components/Recomend";
-import Navbar from "../components/Navbar";
+
 
 // coursel
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,6 +12,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { motion } from "framer-motion";
+import Layout from "../components/Layout";
 
 export async function getServerSideProps() {
   const res = await fetch(`https://kusonime-scrapper.glitch.me/api/page/1`);
@@ -38,8 +39,8 @@ export default function Home({ data, dataRecomend }) {
   }
 
   return (
+    <Layout>
     <div className="w-full text-center text-slate-300 ">
-      <Navbar />
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ opacity: 1, y: 0 }}
@@ -112,5 +113,6 @@ export default function Home({ data, dataRecomend }) {
         </main>
       </motion.div>
     </div>
+    </Layout>
   );
 }
