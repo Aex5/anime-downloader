@@ -7,7 +7,7 @@ import Recomend from "../components/Recomend";
 
 // coursel
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import SwiperCore, { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -61,7 +61,11 @@ export default function Home({ data, dataRecomend }) {
               pagination={{
                 clickable: true,
               }}
-              modules={[Pagination]}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Pagination]}
               className="mySwiper"
             >
               {dataRecomend.map((r, index) => {
