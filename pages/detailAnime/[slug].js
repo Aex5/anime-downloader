@@ -22,7 +22,7 @@ export default function detailAnime({ data }) {
   const [anime, setAnime] = useState([data]);
   // const [download, setDownload] = useState([]);
 
-  const download = data.list_download[0][1]
+  const download = data.list_download[0][1];
 
   return (
     <Layout>
@@ -44,7 +44,9 @@ export default function detailAnime({ data }) {
                 />
 
                 <div className="">
-                  <h1 className="text-xl text-[#34b27b] font-bold mt-20">Download</h1>
+                  <h1 className="text-xl text-[#34b27b] font-bold mt-20">
+                    Download
+                  </h1>
                   {download.map((d, index) => {
                     return (
                       <div key={index}>
@@ -56,11 +58,11 @@ export default function detailAnime({ data }) {
                                 <li>{l.platform}</li>
                                 <li>{l.link}</li>
                               </ul>
-                            )
+                            );
                           })}
                         </ul>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </>
