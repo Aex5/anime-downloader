@@ -4,7 +4,6 @@ import Link from "next/link";
 import Hero from "../components/Hero";
 import Recomend from "../components/Recomend";
 
-
 // coursel
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Autoplay } from "swiper";
@@ -14,25 +13,17 @@ import "swiper/css/navigation";
 import { motion } from "framer-motion";
 import Layout from "../components/Layout";
 
-export async function getServerSideProps() {
-  const res = await fetch(`https://kusonime-scrapper.glitch.me/api/page/1`);
-  const resRecomend = await fetch(
-    "https://kusonime-scrapper.glitch.me/api/rekomendasi"
-  );
-  const data = await res.json();
-  const dataRecomend = await resRecomend.json();
-
-  return {
-    props: {
-      data,
-      dataRecomend,
-    },
-  };
-}
 
 export default function Home({ data, dataRecomend }) {
-  const [anime, setAnime] = useState([data]);
-  const [recomend, setRecomend] = useState([dataRecomend]);
+  const [initialData, setInitialData] = useState(data);
+  const [currentIndex, setCurrentIndex] = useState(2);
+
+  async function handleNext() {
+    const res = await fetch(`https://kusonime-scrapper.glitch.me/api/page/${currentIndex}`)
+    const result = await res.json()
+    setInitialData([...initialData, ...result])
+    setCurrentIndex(currentIndex + 1)
+  }
 
   function limit(string = "", limit = 30) {
     return string.substring(0, limit) + "...";
@@ -87,7 +78,7 @@ export default function Home({ data, dataRecomend }) {
 
           {/* batch anime */}
           <section className="grid grid-cols-3 gap-5 pt-20 ">
-            {data.map((a, index) => {
+            {initialData.map((a, index) => {
               return (
                 <Link href={`/detailAnime/${a.link.endpoint}`} key={index}>
                   <a>
@@ -111,7 +102,7 @@ export default function Home({ data, dataRecomend }) {
               );
             })}
           </section>
-          <button className="mt-10 px-6 py-1 bg-[#34b27b] rounded-md">
+          <button onClick={handleNext} className="mt-10 px-6 py-1 bg-[#34b27b] rounded-md">
             Load more
           </button>
         </main>
@@ -119,4 +110,22 @@ export default function Home({ data, dataRecomend }) {
     </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`https://kusonime-scrapper.glitch.me/api/page/1`);
+  const resRecomend = await fetch(
+    "https://kusonime-scrapper.glitch.me/api/rekomendasi"
+  );
+
+  const data = await res.json();
+  const dataRecomend = await resRecomend.json();
+  
+
+  return {
+    props: {
+      data,
+      dataRecomend,
+    },
+  };
 }

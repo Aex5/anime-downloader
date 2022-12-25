@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import DetailAnime from "../../components/DetailAnime";
 import Layout from "../../components/Layout";
@@ -21,8 +22,7 @@ export default function detailAnime({ data }) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [anime, setAnime] = useState([data]);
   // const [download, setDownload] = useState([]);
-
-  const download = data.list_download[0][1]
+  const download = data.list_download[0][1];
 
   return (
     <Layout>
@@ -44,7 +44,9 @@ export default function detailAnime({ data }) {
                 />
 
                 <div className="">
-                  <h1 className="text-xl text-[#34b27b] font-bold mt-20">Download</h1>
+                  <h1 className="text-xl text-[#34b27b] font-semibold mt-10">
+                    Download
+                  </h1>
                   {download.map((d, index) => {
                     return (
                       <div key={index}>
@@ -52,15 +54,16 @@ export default function detailAnime({ data }) {
                         <ul className="flex flex-wrap gap-2 py-6">
                           {d.link_download.map((l, index) => {
                             return (
-                              <ul key={index}>
-                                <li>{l.platform}</li>
-                                <li>{l.link}</li>
-                              </ul>
-                            )
+                              <div key={index}>
+                                <Link href={l.link}>
+                                  <a>{l.platform}</a>
+                                </Link>
+                              </div>
+                            );
                           })}
                         </ul>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </>
