@@ -23,7 +23,7 @@ export default function detailAnime({ data }) {
   const [anime, setAnime] = useState([data]);
   // const [download, setDownload] = useState([]);
 
-  const download = data.list_download[0][1]
+  const download = data.list_download[0][1];
 
   return (
     <Layout>
@@ -45,7 +45,9 @@ export default function detailAnime({ data }) {
                 />
 
                 <div className="">
-                  <h1 className="text-xl text-[#34b27b] font-bold mt-20">Download</h1>
+                  <h1 className="text-xl text-[#34b27b] font-bold mt-10">
+                    Download
+                  </h1>
                   {download.map((d, index) => {
                     return (
                       <div key={index}>
@@ -53,11 +55,14 @@ export default function detailAnime({ data }) {
                         <ul className="flex flex-wrap gap-2 py-6">
                           {d.link_download.map((l, index) => {
                             return (
-                              <ul key={index}>
-                                <li>{l.platform}</li>
-                                <li>{l.link}</li>
-                              </ul>
-                            )
+                              <div key={index}>
+                                <Link href={l.link}>
+                                  <a className="bg-[#2e2e2e] py-1 px-10 border-[1px] border-gray-700 rounded-md hover:bg-[#222020]">
+                                    {l.platform}
+                                  </a>
+                                </Link>
+                              </div>
+                            );
                           })}
                         </ul>
                       </div>

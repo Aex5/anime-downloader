@@ -18,7 +18,7 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer"
               href="/"
-              className="mb-10 px-6 py-3 font-semibold bg-[#34b27b] border-[1px] border-emerald-800 rounded-md"
+              className="mb-10 px-6 py-3 font-semibold bg-[#34b27b] border-[1px] border-emerald-800 rounded-md hover:bg-[#3b8666]"
             >
               Star this project
             </a>
@@ -29,7 +29,7 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer"
               href="https://github.com/Sujaruu"
-              className="mb-10 px-6 py-3 font-semibold bg-[#2e2e2e] border-[1px] border-gray-700 rounded-md"
+              className="mb-10 px-6 py-3 font-semibold bg-[#2e2e2e] border-[1px] border-gray-700 rounded-md hover:bg-[#222020]"
             >
               Follow my Github
             </a>
