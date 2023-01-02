@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import Head from "next/head";
 import Link from "next/link";
 import Hero from "../components/Hero";
 import Recomend from "../components/Recomend";
@@ -32,6 +33,24 @@ export default function Home({ data, dataRecomend }) {
 
   return (
     <Layout>
+      <Head>
+      <meta
+          name="description"
+          content="bugnime adalah situs download anime batch sub indo terlengkap dan terupdate dengan kualitas terbaik."
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="author" content="Sujaruu" />
+        <meta
+          name="keywords"
+          content="Bugnime | Download Anime Batch Sub Indo"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="Indonesia" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="Bugnime" />
+      </Head>
+      
       <div className="w-full text-center text-slate-300 ">
         <motion.div
           initial={{ y: 100, opacity: 0 }}
