@@ -17,7 +17,7 @@ export default function Hero() {
             <a
               target="_blank"
               rel="noreferrer"
-              href="/"
+              href="https://github.com/Sujaruu/anime-downloader"
               className="mb-10 px-6 py-3 font-semibold bg-[#34b27b] border-[1px] border-emerald-800 rounded-md hover:bg-[#3b8666]"
             >
               Star this project

@@ -68,6 +68,7 @@ export default function Home({ data, dataRecomend }) {
                           key={index}
                           title={r.title}
                           thumbnail={r.link.thumbnail}
+                          endpoint={r.link.endpoint}
                         />
                       </SwiperSlide>
                     </>

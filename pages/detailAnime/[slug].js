@@ -31,7 +31,7 @@ export default function detailAnime({ data }) {
         <div className="max-w-[800px] mx-auto">
           {anime.map((a, index) => {
             return (
-              <>
+              <>  
                 <DetailAnime
                   key={index}
                   title={a.title}
